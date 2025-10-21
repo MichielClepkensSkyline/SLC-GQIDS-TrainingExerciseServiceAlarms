@@ -5,15 +5,12 @@
 The goal of this exercise is to create a GQI (Generic Query Interface) ad hoc data source which can be used to show the real-time alarm state of services, filterable by view ID.
 
 The ad hoc data source must:
-* Read info from DMS
-* Support real-time updates
-* Have caching
-* Have sort optimization
+* Read info from a DMS. 
+* Support real-time updates. These updates may add, remove, or update rows from the initial result returned by your query.
+* Maintain a cache of server alarm states that is continuously kept up-to-date via events. This way, the service alarm states can be used by multiple queries without needing to retrieve the initial data multiple times.
+* Have sort optimization. Please apply a sort operation on the underlying database and intercept the sort operator.
 
-The ad hoc data source must have these input arguments:
-* View ID (integer, default: 0)
-
-The ad hoc data source returns a list of services with these fields:
+Based on the input argument View ID (integer, default: 0), the ad hoc data source should return a list of available services with the fields:
 * Name
 * Alarm State
 
